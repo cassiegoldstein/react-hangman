@@ -20,12 +20,19 @@ function App() {
     })
   }
 
+  const submitGuess = (event) => {
+    event.preventDefault()
+
+    const userGuess = document.getElementById('user-guess').value.toLowerCase()
+    console.log(userGuess)
+  }
+
   return (
     <div className="App">
       <button onClick = {getPuzzle}>Click</button>
       <DisplayPuzzle puzzle = {puzzle}/>
       <DisplayGuesses />
-      <UserInput />
+      <UserInput submitGuess = {submitGuess}/>
     </div>
   )
 }

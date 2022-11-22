@@ -1,10 +1,9 @@
-function UserInput () {
+function UserInput (props) {
 
 
     return(
         <div>
-            <form onSubmit ={(event) => {event.preventDefault()
-            console.log('submitted')}}>
+            <form onSubmit ={props.submitGuess}>
                 <label>Input Guess: </label>
                 <input id= 'user-guess' maxLength  = '1' type= 'text' />
                 <button type = "submit">Submit</button>
