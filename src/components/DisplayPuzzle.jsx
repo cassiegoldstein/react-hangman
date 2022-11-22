@@ -1,7 +1,19 @@
 function DisplayPuzzle (props) {
+
+    const handleDisplay = () =>{
+        return props.puzzle.split('').map((letter) =>{
+           if(props.lettersGuessed.includes(letter)) {
+            return letter
+           } else{
+                return ' _ '
+           }
+        })
+    }
+
+
     return(
         <div>
-            <h1> {props.puzzle} </h1>
+            <h1> Word: {handleDisplay()} </h1>
         </div>
     )
 }

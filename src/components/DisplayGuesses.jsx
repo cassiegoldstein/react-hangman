@@ -1,7 +1,7 @@
-function DisplayGuesses () {
+function DisplayGuesses (props) {
     return(
         <div>
-            <h1> Display Guesses </h1>
+            {props.lettersGuessed.join(", ")}
         </div>
     )
 }
