@@ -1,8 +1,8 @@
-function DisplayGuesses(props) {
-    
+function DisplayGuesses () {
     return(
-        //we passed in all of our guesses, and they will be displayed when user presses enter
-        <h4>{props.allGuesses.join(", ")}</h4>
+        <div>
+            <h1> Display Guesses </h1>
+        </div>
     )
 }
 
