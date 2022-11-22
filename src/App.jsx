@@ -25,7 +25,20 @@ function App() {
 
     const userGuess = document.getElementById('user-guess').value.toLowerCase()
     console.log(userGuess)
+ 
+    if (userGuess === ''){
+      alert('Please input a guess!')
+      return
+    } else if (lettersGuessed.includes(userGuess)){
+      alert('You have already guessed this letter!')
+      return
+    }
+
+    const letters = [...lettersGuessed, userGuess]
+    setLettersGuessed(letters)
   }
+
+
 
   return (
     <div className="App">
