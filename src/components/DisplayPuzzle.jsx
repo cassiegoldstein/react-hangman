@@ -5,7 +5,7 @@ function DisplayPuzzle (props) {
            if(props.lettersGuessed.includes(letter)) { //if letters guessed array include the letter, return letter
             return letter
            } else{
-                return ' _ ' //else, return '_'
+                return ' __ ' //else, return '_'
            }
         })
     }
@@ -13,7 +13,7 @@ function DisplayPuzzle (props) {
     //displays word - initially all underlines
     return(
         <div>
-            <h1> Word: {handleDisplay()} </h1>
+            <h1 className="puzzle">{handleDisplay()} </h1>
         </div>
     )
 }

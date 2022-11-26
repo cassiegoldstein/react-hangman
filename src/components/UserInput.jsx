@@ -1,13 +1,17 @@
 function UserInput (props) {
 
-    //gets user input from form
+    const GenerateButtons =() => {
+        return 'abcdefghijklmnopqrstuvwxyz'.split("").map(letter =>(
+            <button onClick={props.submitGuess} id="user-guess" disabled = {props.lettersGuessed.includes(letter)} key={letter} value={letter} className="btn btn-primary m-2 greenBtn">
+                {letter.toUpperCase()}
+            </button>
+        ))
+    }
+
+    //gets user input from buttons
     return(
         <div>
-            <form onSubmit ={props.submitGuess}>
-                <label>Input Guess: </label>
-                <input id= 'user-guess' maxLength  = '1' type= 'text' />
-                <button type = "submit">Submit</button>
-                </form>
+            <GenerateButtons/>
         </div>
     )
 }

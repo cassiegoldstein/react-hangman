@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import DisplayGuesses from './components/DisplayGuesses';
 import DisplayPuzzle from './components/DisplayPuzzle';
+import HangmanImg from './components/hangmanImg';
 import UserInput from './components/UserInput';
+import RestartButton from './components/restartButton';
 import axios from 'axios'
+import { FaHeart } from 'react-icons/fa';
 
 function App() {
   //word to guess
@@ -38,28 +40,18 @@ function App() {
   const submitGuess = (event) => {
     event.preventDefault() //prevent page from reloading
     //display alert and reload game when user guesses six wrong answers
-    if (wrongGuesses.length > 6){
+    if (wrongGuesses.length > 5){
       alert(`You have lost the game! The word was ${puzzle}.`)
       window.location.reload();
       return
     }
     //get value of input when user clicks submit
-    const userGuess = document.getElementById('user-guess').value.toLowerCase()
+    const userGuess = event.target.value.toLowerCase();
     console.log(userGuess)
- 
-    if (userGuess === ''){ //alert if guess is empty
-      alert('Please input a guess!')
-      return
-    } else if (lettersGuessed.includes(userGuess)){ //alert if letter has already been guessed
-      alert('You have already guessed this letter!')
-      return
-    }
 
     //create array of letters guessed by users and set lettersGuessed to that array
     const letters = [...lettersGuessed, userGuess]
     setLettersGuessed(letters)
-
-    document.getElementById('user-guess').value = '' //input turns empty on submit
   }
 
 
@@ -76,18 +68,36 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Let's Play Hangman!</h1> 
+      <div className="row heading">
+       <h3 className="heartLives"><FaHeart/></h3>
+       <h3 className="textLives">{6-wrongGuesses.length}</h3>
+        <center>
+       <h1 className="headerText">Let's Play Hangman!</h1> 
+       </center>
+       </div>
+       <div className="row divider">
+       </div>
+       <div className="row divider2"></div>
       {/* determine if player won */}
-       {(checkVictory() && puzzle.length > 0) ? <div> 
-          <h1>You won!</h1> 
+       {(checkVictory() && puzzle.length > 0) ? <div className="row body"> 
+          <h1 className = 'win'>You won!</h1> 
           {/* reload if user presses restart button */}
-          <button onClick={() => window.location.reload()}>Restart Game!</button>
+          <RestartButton />
           </div>
           :
-          <div>
-      <DisplayPuzzle puzzle = {puzzle} lettersGuessed = {lettersGuessed}/>
-      <UserInput submitGuess = {submitGuess}/>
-      <DisplayGuesses lettersGuessed = {lettersGuessed} puzzle = {puzzle}/>
+          <div className="row body">
+            <div className="row">
+      <HangmanImg numWrong = {wrongGuesses.length}/>
+      </div>
+      <div className="row">
+        <center>
+      <DisplayPuzzle className="displayPuzzle" puzzle = {puzzle} lettersGuessed = {lettersGuessed}/>
+      </center>
+      </div>
+      <div className="row">
+      <UserInput lettersGuessed = {lettersGuessed} submitGuess = {submitGuess}/>
+      </div>
+      <RestartButton/>
     </div>
 }
     </div>
