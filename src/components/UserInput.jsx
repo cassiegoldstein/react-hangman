@@ -1,6 +1,6 @@
 function UserInput (props) {
 
-
+    //gets user input from form
     return(
         <div>
             <form onSubmit ={props.submitGuess}>
